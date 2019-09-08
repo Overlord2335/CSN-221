@@ -1,0 +1,41 @@
+mov r1,1 ;      //int i = 0 
+mov r2,0 ;      //count = 0
+mov r3,1 ;      //int j = 1 
+
+.int_j
+        mul r4,r3,r3 ;
+        mul r4,r4,r3 ;  //j^3 
+        cmp r1,r4 ;
+        ble .inc_i1 ;
+        bgt .int_k ;
+
+.inc_i1
+        add r1,r1,1 ;
+        mov r3,1 ;
+        b .int_j ;
+.int_k
+        add r5,r3,1 ;   //int k = j+1
+        mul r6,r5,r5 ;
+        mul r6,r6,r5 ;  //k^3
+        cmp r1,r6 ;
+        bgt .if
+        ble .inc_j ;
+.if
+        add r7,r6,r4 ;
+        cmp r1,r7 ;
+        beq .inc_r2 ;
+        bne .inc_k ;
+.inc_j
+        add r3,r3,1 ;
+        b .int_j ;
+.inc_k
+        add r5,r5,1 ;
+        b .int_k ;
+.inc_r2
+        add r2,r2,1 ;
+        cmp r2,2 ;
+        beq .end ;
+        ble .inc_i1 ;
+.end
+        exit ;
+
